@@ -21,12 +21,13 @@ class Runner:
         results = []
         for question in questions:
             index = questions.index(question)
-            fuzzyAnswer = self.run(question)
+            fuzzyAnswer = self.getFuzzyAnswer(question,answers,questions)
+
             if fuzzyAnswer == answers[index]:
                 results.append(True)
             else:
                 results.append(False)
-
+            self.reporter(index, question, fuzzyAnswer, answers[index],results[index])
         accuracy = 100 * results.count(True) / 20
 
         return accuracy
@@ -36,12 +37,16 @@ class Runner:
         text = speechRecognition.recognize()
         print('----------- QUESTION -----------')
         print(text)
-        fuzzyString = FuzzyString()
         documentParser = DocumentParser(self.dataSetPath, "B,C")
         df = documentParser.parse()
         answers = df['Answer']
         questions = df['Question']
+        return self.getFuzzyAnswer(text,answers,questions)
 
+
+
+    def getFuzzyAnswer(self,text,answers,questions):
+        fuzzyString = FuzzyString()
         fuzzyAnswers = []
         ratios = []
         for i in range(len(answers)):
@@ -55,3 +60,8 @@ class Runner:
             return False
         else:
             return fuzzyAnswers[indexOfMax]
+
+    def reporter(self,index,question,fuzzyAnswer,answer,isCorrect):
+        print('--------------------------------' + str(index) + '--------------------------------')
+        print('Is correct :' + str(isCorrect) +'\n' +'question: ' + question + '\n' + 'fuzzy answer: ' + str(fuzzyAnswer) + '\n' + 'answer: ' + answer)
+        print('---------------------------------------------------------------------')
