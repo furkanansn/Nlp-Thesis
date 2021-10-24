@@ -1,8 +1,8 @@
 from Runner.Runner import Runner
 
-#Runner.run()
-
-#veri kümesinden random soru ve cevap alıp. karşılaştır sonucu listeye ekleyip % kaç doğru
-result = Runner.test("nazilliye kaç para")
+runner = Runner(20)
+# result = runner.test()
+result = runner.run()
+print('---------- RESULT ----------')
+# print('%' + str(result))
 print(result)
-
