@@ -18,5 +18,6 @@ if isTest == '1':
         questionCount) + '. Is it competition: ' + str(competitionMode))
 else:
     result = runner.run()
+    print(result)
 
 
