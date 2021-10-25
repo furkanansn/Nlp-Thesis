@@ -8,13 +8,14 @@ class Runner:
         self.numberOfQuestions = n
         self.dataSetPath = './Repository/BusQuestionAnswer.xlsx'
 
-    def test(self):
+    def test(self,isCompetition):
         documentParser = DocumentParser(self.dataSetPath, "B,C")
         df = documentParser.parse()
         L = [369,  789,  495,  886,  576,  934,   42,  526,
              8, 1038,  521, 724,  331, 1018,  394,  940,  370,
              60,  574,  893]
-        df = df.loc[L]
+        if not isCompetition:
+            df = df.loc[L]
         # df = df.sample(n=self.numberOfQuestions)
         answers = df['Answer'].tolist()
         questions = df['Question'].tolist()
@@ -28,9 +29,9 @@ class Runner:
             else:
                 results.append(False)
             self.reporter(index, question, fuzzyAnswer, answers[index],results[index])
-        accuracy = 100 * results.count(True) / 20
+        accuracy = 100 * results.count(True) / len(questions)
 
-        return accuracy
+        return accuracy,len(questions)
 
     def run(self):
         speechRecognition = SpeechRecognition()
@@ -55,11 +56,16 @@ class Runner:
             fuzzyAnswers.append(answers[i])
 
         maxRatio = max(ratios)
+
         indexOfMax = ratios.index(maxRatio)
-        if fuzzyString.getAbsoluteRatio(text, fuzzyAnswers[indexOfMax]) < 50:
-            return False
-        else:
-            return fuzzyAnswers[indexOfMax]
+        return fuzzyAnswers[indexOfMax]
+
+        # I remove these codes because before i removed them the accuraciy was %67. After I removed them it was %87.
+        # I know We should take precautions but other ways instead of this
+        #if fuzzyString.getAbsoluteRatio(text, fuzzyAnswers[indexOfMax]) < 50:
+        #    return False
+        #else:
+        #    return fuzzyAnswers[indexOfMax]
 
     def reporter(self,index,question,fuzzyAnswer,answer,isCorrect):
         print('--------------------------------' + str(index) + '--------------------------------')
