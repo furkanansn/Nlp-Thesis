@@ -1,23 +1,37 @@
-from Runner.Runner import Runner
+from Runner.RunnerFuzzy import RunnerFuzzy
+from Runner.RunnerKeyword import RunnerKeyword
 
-runner = Runner(20)
-print('Enter 1 For Test \nEnter 2 For just run')
+runnerFuzzy = RunnerFuzzy(20)
+runnerKeyword = RunnerKeyword()
+
+print('Enter 1 For Test \nEnter 2 For Just Run')
 isTest = input('Is it test?\n')
 competitionMode = False
 if isTest == '1':
-    print('Enter 1 For competition \nEnter 2 For test with 20 question')
-    isCompetition = input('Is it competition ? :)\n')
-    if isCompetition == '1':
-        competitionMode = True
-
-    result, questionCount = runner.test(competitionMode)
+    print('Enter 1 For Fuzzy Method \nEnter 2 For Keyword Method')
+    competitionMode = True
+    isFuzzy = input('Enter your choose ? \n')
     print('---------- RESULT ----------')
-    if competitionMode:
-        competitionMode = str(competitionMode)  + ' :)'
-    print('Accuracy: ' + '% ' + str(result) + " number of questions asked: " + str(
-        questionCount) + '. Is it competition: ' + str(competitionMode))
+    if isFuzzy == '1':
+        result, questionCount = runnerFuzzy.test(competitionMode)
+        print('Accuracy: ' + '% ' + str(result) + " number of questions asked: " + str(
+            questionCount))
+
+    else:
+
+        result, questionCount = runnerKeyword.test()
+        print('Accuracy: ' + '% ' + str(result) + " number of questions asked: " + str(
+            questionCount))
+
+
+
 else:
-    result = runner.run()
+    print('Enter 1 For Fuzzy Method \nEnter 2 For Keyword Method')
+    isFuzzy = input('Enter your choose ? \n')
+    if(isFuzzy == '1'):
+        result = runnerFuzzy.run()
+    else:
+        result = runnerKeyword.run()
     print(result)
 
 

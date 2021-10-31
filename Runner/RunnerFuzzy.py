@@ -3,7 +3,7 @@ from Repository.DocumentParser import DocumentParser
 from Repository.SpeechRecognition import SpeechRecognition
 
 
-class Runner:
+class RunnerFuzzy:
     def __init__(self, n):
         self.numberOfQuestions = n
         self.dataSetPath = './Repository/BusQuestionAnswer.xlsx'
