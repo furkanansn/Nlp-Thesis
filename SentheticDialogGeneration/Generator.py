@@ -25,12 +25,12 @@ class Generator:
             query = self.prolog.query(f"generate_questions_units('{answer}',Q).")
             q_list = []
             for soln in query:
-                q_list.append(soln["Q"])
-            q_list = set(q_list)
-            s_list.append({
-                "units": q_list
-            })
+                for i in soln["Q"]:
+                    s_list.append({
+                        "units": i
+                    })
         print(s_list)
+        #self.getCombinations(s_list)
 
     def getCombinations(self,arr):
         temp = combinations(arr, len(arr))
