@@ -14,7 +14,8 @@ class Generator:
     def getQuestions(self):
         documentParser = DocumentParser(self.dataSetPath, "B,C")
         df = documentParser.parse()
-        answers = df['Answer'].tolist()
+        #answers = df['Answer'].tolist()
+        answers = ["adüye n_605 numaralı otobüs gitmektedir"]
         self.getUnits(answers)
 
     def getUnits(self, answers):
