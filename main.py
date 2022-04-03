@@ -1,10 +1,11 @@
 from Runner.RunnerFuzzy import RunnerFuzzy
 from Runner.RunnerKeyword import RunnerKeyword
+from SentheticDialogGeneration.Generator import Generator
 
 runnerFuzzy = RunnerFuzzy(20)
 runnerKeyword = RunnerKeyword()
 
-print('Enter 1 For Test \nEnter 2 For Just Run')
+print('Enter 1 For Test \nEnter 2 For Run \n Enter 3 for Senthetic Dialog Generation')
 isTest = input('Is it test?\n')
 competitionMode = False
 if isTest == '1':
@@ -23,9 +24,7 @@ if isTest == '1':
         print('Accuracy: ' + '% ' + str(result) + " number of questions asked: " + str(
             questionCount))
 
-
-
-else:
+elif isTest == '2':
     print('Enter 1 For Fuzzy Method \nEnter 2 For Keyword Method')
     isFuzzy = input('Enter your choose ? \n')
     if(isFuzzy == '1'):
@@ -33,5 +32,7 @@ else:
     else:
         result = runnerKeyword.run()
     print(result)
-
+else:
+    generator = Generator()
+    generator.consult()
 
