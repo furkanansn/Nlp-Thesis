@@ -45,8 +45,7 @@ class Generator:
             query = self.prolog.query(f"generate_questions('{answer}',Q).")
             q_list = []
             for soln in query:
-                q_list.append(soln["Q"].replace("n_", ""))
-            q_list = set(q_list)
+                q_list.append(soln["Q"])
             s_list.append({
                 "units": q_list
             })
