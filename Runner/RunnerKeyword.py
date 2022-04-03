@@ -2,7 +2,7 @@ from Fuzzy.FuzzyString import FuzzyString
 from Nlp.DependencyParser import DependencyParser
 from Repository.DocumentParser import DocumentParser
 from Repository.SpeechRecognition import SpeechRecognition
-
+from Prolog.Prolog import PrologNLP
 
 class RunnerKeyword:
     def __init__(self):
@@ -15,6 +15,7 @@ class RunnerKeyword:
         questions = self.df['Question'].tolist()
         keywords = self.df['keywords'].tolist()
         results = []
+
         for question in questions:
             index = questions.index(question)
             answer = self.getAnswer(question)
