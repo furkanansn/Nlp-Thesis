@@ -34,7 +34,7 @@ generate_questions1([List|Rest], [[Q]|Rest]):-
 generate_questions1([List|Rest], [[Q|Ws]|Rest]):-
     List = [A|Ws],
     word(a, [A]),
-    Q = kaï¿½.
+    Q = kaç.
     
 generate_questions1([List|Rest], [[Q|Ws]|Rest]):-
     List = [A|Ws],
