@@ -1,6 +1,6 @@
 :- encoding(iso_latin_1).
-:-include('/Users/admin/Documents/college/Thesis/Project/prolog-files/morphophonologicalAnalyzer.pl').
-:-include('/Users/admin/Documents/college/Thesis/Project/prolog-files/tokenizer.pl').
+:-include('D:/Thesis/prolog-files/morphophonologicalAnalyzer.pl').
+:-include('D:/Thesis/prolog-files/tokenizer.pl').
 
 generate_questions(List_of_Lists, Q_String):-
     generate_questions1(List_of_Lists, Q_List),
@@ -76,6 +76,7 @@ find_units([W|Ws],SubList,List_of_Lists):-
     find_units(Ws,List,List_of_Lists).
 
 word(n, [adüye]).
+word(n, [adüden]).
 word(a, [n_605]).
 word(a, [numaralý]).
 word(n, [otobüs]).
