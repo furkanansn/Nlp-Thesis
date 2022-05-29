@@ -31,16 +31,16 @@ generate_questions1([List|Rest], [[Q]|Rest]):-
     
     (word(v1, [W]) -> find_Q1(L1, Q) ; find_Q(L1, Q) ).
    
-generate_questions1([List|Rest], [[Q|Ws]|Rest]):-
-    List = [A|Ws],
-    word(a, [A]),
-    Q = kaç.
-    
-generate_questions1([List|Rest], [[Q|Ws]|Rest]):-
-    List = [A|Ws],
-    word(a, [A]),
-    Q = hangi.
-   
+% generate_questions1([List|Rest], [[Q|Ws]|Rest]):-
+%     List = [A|Ws],
+%     word(a, [A]),
+%     Q = kaç.
+%     
+% generate_questions1([List|Rest], [[Q|Ws]|Rest]):-
+%     List = [A|Ws],
+%     word(a, [A]),
+%     Q = hangi.
+% 
 generate_questions1([List|RestIN], [List|RestOUT]):-
     generate_questions1(RestIN, RestOUT).
 
@@ -75,6 +75,11 @@ find_units([W|Ws],SubList,List_of_Lists):-
     append(SubList, [W], List),
     find_units(Ws,List,List_of_Lists).
 
+
+word(n, [ne]).
+word(n, [neye]).
+word(n, [hangisi]).
+word(n, [nereye]).
 word(n, [adüye]).
 word(n, [adüden]).
 word(a, [n_605]).
@@ -99,11 +104,13 @@ word(a, [küçük]).
 word(v, [havladý]).
 word(v, [havlýyor]).
 word(v, [havlayacak]).
-word(v, [kovaladý]).
+word(v1, [kovaladý]).
 word(v, [kovalýyor]).
 word(v, [kovalayacak]).
 word(v, [yedi]).
 word(v, [verdi]).
+word(v1, ['gider mi']).
+word(v1, ['gidiyor mu']).
 
 sinonim([adüye], [üniversiteye]).
 sinonim([adüye], [adüye]).
