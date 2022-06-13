@@ -63,7 +63,7 @@ class Generator:
             x = None
             arr_sent = q.split()
             if len(arr_sent) > 0:
-                isQ = arr_sent[0] + ' ' + arr_sent[1]
+                isQ = " ".join(arr_sent)  #arr_sent[0] + ' ' + arr_sent[1]
                 q_start = self.prolog.query(f"find_Q1(X, '{isQ}').")
                 for soln in q_start:
                     if soln["X"] is not None:
