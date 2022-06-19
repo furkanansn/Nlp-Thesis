@@ -71,6 +71,8 @@ class Generator:
             if x is not None:
                 continue
             clean_string = " ".join(q.split())
+            if any(s in clean_string for s in ("mi", "mu", "mı", "mü")) and arr_sent[-1] not in ["mi", "mu", "mı", "mü"]:
+                q_list.remove(q)
             self.questions.add(clean_string)
             self.getUnits([clean_string])
         s_list.append(q_list)
